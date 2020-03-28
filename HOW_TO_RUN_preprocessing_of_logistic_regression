@@ -1,0 +1,48 @@
+How to run logistic regression on rna seq data
+preprocessing: https://github.com/pachterlab/scRNA-Seq-TCC-prep
+
+Package                       Version   
+----------------------------- ----------
+backports.functools-lru-cache 1.6.1     
+certifi                       2019.11.28
+cycler                        0.10.0    
+kiwisolver                    1.1.0     
+matplotlib                    2.2.5     
+numpy                         1.16.6    
+pip                           20.0.2    
+pyparsing                     2.4.6     
+python-dateutil               2.8.1     
+pytz                          2019.3    
+scikit-learn                  0.16.1    
+scipy                         0.16.0    
+setuptools                    44.1.0    
+six                           1.14.0    
+subprocess32                  3.5.4     
+wheel                         0.34.2 
+kallisto 0.43.0
+Python 2.7.15
+       
+    1. create a virtual environment with the right python version
+        1. conda create -n logistic_regression python=2.7
+        2. conda activate logistic_regression
+    2. Activate bioconda to download kallisto
+        1. conda config --add channels defaults
+        2. conda config --add channels bioconda
+        3. conda config --add channels conda-forge 
+    3. download kallisto
+        1. conda install kallisto==0.43.0
+    4. download all the package as needed
+        1. pip install package=version
+    5. download transcriptome file
+       # Download and merge human cDNA and ncDNA files from Ensembl for the index.
+       wget ftp://ftp.ensembl.org/pub/current_fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
+       wget ftp://ftp.ensembl.org/pub/current_fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz
+       # Download and merge Mus_musculus cDNA and ncDNA files from Ensembl for the index.
+       wget ftp://ftp.ensembl.org/pub/current_fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
+       wget ftp://ftp.ensembl.org/pub/current_fasta/mus_musculus/ncrna/Mus_musculus.GRCm38.ncrna.fa.gz
+       # Merge human and Mus_musculus fasta files.
+       cat Homo_sapiens.GRCh38.cdna.all.fa.gz Homo_sapiens.GRCh38.ncrna.fa.gz Mus_musculus.GRCm38.ncrna.fa.gz Mus_musculus.GRCm38.cdna.all.fa.gz
+    6. Build kallisto index
+        1. kallisto index -i transcripts.idx Mus_musculus.GRCm38_Homo_sapiens.GRCh38.cdna.mix.fa.gz
+    7. However I don't have (demultiplexed) FASTQ for my data. It can be converted from bcl (binary base call file) to fastq, but I don't have bcl. It is a very cool algorithm, but unfortunately I cannot continue with it. 
+    8. #TODO COME BACK LATER TO FINISH THE TUTORIAL AS I CONTINUE ON WITH OTHER ALGORITHM 
