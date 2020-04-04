@@ -9,7 +9,7 @@ BRIE is a Bayesian hierarchical model that estimates exon inclusion ratios by le
 I like BRIE because it is easy to carry out, it does not take a long time to run, and I can find the solutions for my problems all the time in the github. The result is very helpful for me. Here, I want to acknowledge the author for his hard work. 
 
 Ease of use: 4.5 out of 5
-Runtime: 5 out 5 (does not take hours or days)
+Runtime: 5 out 5 (does not take hours to run)
 
 Summary of how the algorithm works
 1. Fine genome reference file (.fa) and annotation files (.gff3. .gtf)
